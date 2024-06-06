@@ -1,21 +1,17 @@
 const express = require('express');
-const cors = require('cors');
+const path = require('path');
+const proxy = require('http-proxy-middleware');
 
 const app = express();
 const port = 5000;
 
-app.use(cors());
+// Проксирование запросов к фронтенду
+app.use('/frontend', proxy({ target: 'http://localhost:5173', changeOrigin: true }));
 
-const products = [
-    { id: 1, name: 'Product 1', description: 'Description for product 1' },
-    { id: 2, name: 'Product 2', description: 'Description for product 2' },
-    { id: 3, name: 'Product 3', description: 'Description for product 3' },
-];
+// Разрешение доступа к статическим файлам фронтенда
+app.use(express.static(path.join(__dirname, '../frontend/public')));
 
-app.get('/api/products', (req, res) => {
-    res.json(products);
-});
-
+// Запуск сервера
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

@@ -5,7 +5,7 @@ function App() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/products')
+        axios.get('https://mern-products-app.onrender.com/api/products')
             .then(response => {
                 setProducts(response.data);
             })
