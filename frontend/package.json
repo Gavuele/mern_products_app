@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"vite\" \"node ../backend/server.js\"",
-    "install": "cd frontend && npm install && cd ../backend && npm install",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
