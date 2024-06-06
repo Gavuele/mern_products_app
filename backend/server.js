@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // Existing API endpoint
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
+    res.sendFile(path.join(__dirname, 'http://localhost:5000/'));
 });
 
 // Existing API endpoint
