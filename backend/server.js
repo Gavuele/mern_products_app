@@ -1,12 +1,14 @@
 const express = require('express');
 const path = require('path');
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 
 const app = express();
 const port = 5000;
 
 // Проксирование запросов к фронтенду
-app.use('/frontend', proxy({ target: 'http://localhost:5173', changeOrigin: true }));
+app.use('/', createProxyMiddleware({ target: 'http://localhost:5173', changeOrigin: true }));
+
 
 // Разрешение доступа к статическим файлам фронтенда
 app.use(express.static(path.join(__dirname, '../frontend/public')));
